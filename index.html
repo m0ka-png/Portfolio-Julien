@@ -1192,11 +1192,12 @@
 <script>
 
 // ─── FORMULAIRE CONTACT ───
-  function sendMail() {
-    const name    = document.getElementById('form-name').value.trim();
-    const email   = document.getElementById('form-email').value.trim();
-    const message = document.getElementById('form-message').value.trim();
+  async function sendMail() {
+    const name     = document.getElementById('form-name').value.trim();
+    const email    = document.getElementById('form-email').value.trim();
+    const message  = document.getElementById('form-message').value.trim();
     const feedback = document.getElementById('form-feedback');
+    const btn      = document.getElementById('form-btn');
  
     if (!name || !email || !message) {
       feedback.style.color = 'var(--red)';
@@ -1206,19 +1207,36 @@
       return;
     }
  
-    const subject = encodeURIComponent('Portfolio — Projet de ' + name);
-    const body    = encodeURIComponent(
-      'Nom : ' + name + '\n' +
-      'Email : ' + email + '\n\n' +
-      message
-    );
+    btn.textContent = 'Envoi en cours...';
+    btn.disabled = true;
  
-    window.location.href = 'mailto:mailprojducrocq@gmail.com?subject=' + subject + '&body=' + body;
+    try {
+      const res = await fetch('https://formspree.io/f/mkodpwkq', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({ name, email, message })
+      });
  
-    feedback.style.color = 'var(--cyan)';
-    feedback.textContent = '✓ Ouverture de ton client mail...';
-    feedback.style.opacity = '1';
-    setTimeout(() => { feedback.style.opacity = '0'; }, 4000);
+      if (res.ok) {
+        feedback.style.color = 'var(--cyan)';
+        feedback.textContent = '✓ Message envoyé ! Je te répondrai rapidement.';
+        feedback.style.opacity = '1';
+        document.getElementById('form-name').value = '';
+        document.getElementById('form-email').value = '';
+        document.getElementById('form-message').value = '';
+        setTimeout(() => { feedback.style.opacity = '0'; }, 5000);
+      } else {
+        throw new Error();
+      }
+    } catch {
+      feedback.style.color = 'var(--red)';
+      feedback.textContent = '⚠ Erreur lors de l\'envoi. Réessaie.';
+      feedback.style.opacity = '1';
+      setTimeout(() => { feedback.style.opacity = '0'; }, 4000);
+    }
+ 
+    btn.textContent = 'Envoyer le message';
+    btn.disabled = false;
   }
  
   // ─── GRID INTERACTIVE ───
@@ -1391,3 +1409,4 @@
 </script>
 </body>
 </html>
+ 
