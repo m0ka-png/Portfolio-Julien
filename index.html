@@ -1124,22 +1124,22 @@
     <div class="process-step reveal">
       <span class="step-num">01</span>
       <div class="step-title">Brief</div>
-      <p class="step-desc">J'analyse ton projet, tes références, ta cible. Un bon montage commence par une écoute précise.</p>
+      <p class="step-desc">On pose à plat ton projet, tes références et ton public cible. Pour moi, un bon montage commence toujours par comprendre exactement ce que tu veux raconter.</p>
     </div>
     <div class="process-step reveal">
       <span class="step-num">02</span>
       <div class="step-title">Découpage</div>
-      <p class="step-desc">Sélection des rushes, construction de la timeline, rythme et narration. C'est là que tout se joue.</p>
+      <p class="step-desc">Tri des rushes, structure du récit, travail du rythme : c'est l'étape clé où la vidéo prend toute sa forme et son sens.</p>
     </div>
     <div class="process-step reveal">
       <span class="step-num">03</span>
       <div class="step-title">Motion</div>
-      <p class="step-desc">Titres animés, transitions dynamiques, effets visuels. Je donne du caractère à chaque image.</p>
+      <p class="step-desc">Titres animés, transitions fluides, effets visuels... J'apporte la touche dynamique qui donne de la personnalité et du relief à tes images.</p>
     </div>
     <div class="process-step reveal">
       <span class="step-num">04</span>
       <div class="step-title">Livraison</div>
-      <p class="step-desc">Étalonnage, mixage son, export optimisé pour chaque plateforme. Propre, dans les temps.</p>
+      <p class="step-desc">Étalonnage, mixage audio et exports sur-mesure pour chaque réseau. Un rendu propre et livré dans les temps.</p>
     </div>
   </div>
 </section>
@@ -1151,40 +1151,38 @@
     <h2 class="section-title">Travaillons<br>ensemble</h2>
     <p class="contact-desc">Tu as un projet vidéo, un montage à réaliser, un motion design à créer ? Écris-moi.</p>
     <div class="contact-links">
-      <a href="mailto:contact@julien.fr" class="contact-link">
+      <a href="mailto:mailprojducrocq@gmail.com" class="contact-link" target="_blank">
         <span class="link-icon">✉</span> mailprojducrocq@gmail.com
       </a>
-      <a href="#" class="contact-link">
+      <a href="https://www.youtube.com/@-mok4-" class="contact-link" target="_blank" rel="noopener">
         <span class="link-icon">▶</span> YouTube — @-mok4-
       </a>
-      <a href="#" class="contact-link">
+      <a href="https://www.instagram.com/juli1_exe" class="contact-link" target="_blank" rel="noopener">
         <span class="link-icon">◈</span> Instagram — @juli1_exe
-      </a>
-      <a href="#" class="contact-link">
-        <span class="link-icon">⬡</span> LinkedIn
       </a>
     </div>
   </div>
   <div class="contact-right reveal">
     <div class="form-field">
       <label class="form-label">Nom</label>
-      <input type="text" class="form-input" placeholder="_">
+      <input type="text" id="form-name" class="form-input" placeholder="_">
     </div>
     <div class="form-field">
       <label class="form-label">Email</label>
-      <input type="email" class="form-input" placeholder="_">
+      <input type="email" id="form-email" class="form-input" placeholder="_">
     </div>
     <div class="form-field">
       <label class="form-label">Projet</label>
-      <textarea class="form-textarea" placeholder="Décris ton projet..."></textarea>
+      <textarea id="form-message" class="form-textarea" placeholder="Décris ton projet..."></textarea>
     </div>
-    <button class="form-btn">Envoyer le message</button>
+    <button class="form-btn" id="form-btn" onclick="sendMail()">Envoyer le message</button>
+    <p id="form-feedback" style="margin-top:14px;font-size:0.6rem;letter-spacing:0.2em;opacity:0;transition:opacity 0.4s;color:var(--cyan);">✓ Message envoyé</p>
   </div>
 </section>
  
 <!-- ─── FOOTER ─── -->
 <footer>
-  <span class="footer-copy">© 2025 Julien — Monteur Vidéo & Motion Designer</span>
+  <span class="footer-copy">© 2026 Julien — Monteur Vidéo & Motion Designer</span>
   <div class="footer-status">
     <div class="status-dot"></div>
     Disponible pour missions freelance
@@ -1192,6 +1190,37 @@
 </footer>
  
 <script>
+
+// ─── FORMULAIRE CONTACT ───
+  function sendMail() {
+    const name    = document.getElementById('form-name').value.trim();
+    const email   = document.getElementById('form-email').value.trim();
+    const message = document.getElementById('form-message').value.trim();
+    const feedback = document.getElementById('form-feedback');
+ 
+    if (!name || !email || !message) {
+      feedback.style.color = 'var(--red)';
+      feedback.textContent = '⚠ Remplis tous les champs.';
+      feedback.style.opacity = '1';
+      setTimeout(() => { feedback.style.opacity = '0'; }, 3000);
+      return;
+    }
+ 
+    const subject = encodeURIComponent('Portfolio — Projet de ' + name);
+    const body    = encodeURIComponent(
+      'Nom : ' + name + '\n' +
+      'Email : ' + email + '\n\n' +
+      message
+    );
+ 
+    window.location.href = 'mailto:mailprojducrocq@gmail.com?subject=' + subject + '&body=' + body;
+ 
+    feedback.style.color = 'var(--cyan)';
+    feedback.textContent = '✓ Ouverture de ton client mail...';
+    feedback.style.opacity = '1';
+    setTimeout(() => { feedback.style.opacity = '0'; }, 4000);
+  }
+ 
   // ─── GRID INTERACTIVE ───
   const overlay = document.getElementById('grid-overlay');
   const cellSize = 60;
