@@ -14,11 +14,11 @@
     --violet: #9b00ff;
     --grid-size: 60px;
   }
-
+ 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
+ 
   html { scroll-behavior: smooth; }
-
+ 
   body {
     background: var(--black);
     color: var(--white);
@@ -26,7 +26,7 @@
     overflow-x: hidden;
     cursor: crosshair;
   }
-
+ 
   /* ─── SCANLINES OVERLAY ─── */
   body::before {
     content: '';
@@ -44,12 +44,12 @@
     z-index: 9998;
     animation: scanroll 8s linear infinite;
   }
-
+ 
   @keyframes scanroll {
     0% { background-position: 0 0; }
     100% { background-position: 0 100px; }
   }
-
+ 
   /* ─── NOISE OVERLAY ─── */
   body::after {
     content: '';
@@ -62,7 +62,7 @@
     z-index: 9997;
     animation: noiseAnim 0.3s steps(2) infinite;
   }
-
+ 
   @keyframes noiseAnim {
     0% { transform: translate(0,0); }
     25% { transform: translate(-2%, 1%); }
@@ -70,28 +70,28 @@
     75% { transform: translate(-1%, 2%); }
     100% { transform: translate(2%, -1%); }
   }
-
+ 
   /* ─── GRID OVERLAY ─── */
   #grid-overlay {
     position: fixed;
     top: 0; left: 0;
     width: 100%; height: 100%;
-    z-index: 10;
     pointer-events: none;
+    z-index: 9996;
   }
-
+ 
   .grid-cell {
     position: absolute;
     border: 1px solid transparent;
     transition: background 0.1s, border-color 0.1s;
   }
-
+ 
   .grid-cell.hover {
     background: rgba(255,0,34,0.08);
     border-color: rgba(255,0,34,0.4);
     box-shadow: inset 0 0 10px rgba(255,0,34,0.15);
   }
-
+ 
   /* ─── GLITCH HORIZONTAL BAR ─── */
   .glitch-bar {
     position: fixed;
@@ -103,7 +103,7 @@
     animation: glitchBar 6s infinite;
     opacity: 0;
   }
-
+ 
   @keyframes glitchBar {
     0%, 90%, 100% { opacity: 0; top: -10px; }
     91% { opacity: 1; top: 20%; height: 2px; }
@@ -112,7 +112,7 @@
     94% { top: 80%; height: 3px; opacity: 0.6; }
     95% { opacity: 0; }
   }
-
+ 
   /* ─── NAV ─── */
   nav {
     position: fixed;
@@ -126,7 +126,7 @@
     background: rgba(8,8,8,0.85);
     backdrop-filter: blur(4px);
   }
-
+ 
   .nav-logo {
     font-family: 'UnifrakturMaguntia', serif;
     font-size: 1.4rem;
@@ -134,20 +134,20 @@
     letter-spacing: 0.05em;
     text-decoration: none;
   }
-
+ 
   .nav-center {
     font-size: 0.62rem;
     letter-spacing: 0.3em;
     color: rgba(255,255,255,0.4);
     text-transform: uppercase;
   }
-
+ 
   .nav-links {
     display: flex;
     gap: 32px;
     list-style: none;
   }
-
+ 
   .nav-links a {
     font-size: 0.65rem;
     letter-spacing: 0.25em;
@@ -157,7 +157,7 @@
     transition: color 0.2s;
     position: relative;
   }
-
+ 
   .nav-links a::after {
     content: '';
     position: absolute;
@@ -166,16 +166,16 @@
     background: var(--red);
     transition: width 0.3s;
   }
-
+ 
   .nav-links a:hover { color: var(--white); }
   .nav-links a:hover::after { width: 100%; }
-
+ 
   /* ─── SECTIONS ─── */
   section {
     min-height: 100vh;
     position: relative;
   }
-
+ 
   /* ─── HOME ─── */
   #home {
     display: flex;
@@ -186,7 +186,7 @@
     padding: 80px 20px 40px;
     overflow: hidden;
   }
-
+ 
   .home-label {
     font-size: 0.6rem;
     letter-spacing: 0.4em;
@@ -195,12 +195,12 @@
     margin-bottom: 32px;
     animation: fadeIn 1s ease 0.5s both;
   }
-
+ 
   @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
   }
-
+ 
   .hero-title {
     font-family: 'UnifrakturMaguntia', serif;
     font-size: clamp(5rem, 14vw, 11rem);
@@ -209,7 +209,7 @@
     animation: fadeIn 1s ease 0.2s both;
     color: var(--white);
   }
-
+ 
   /* RGB SPLIT GLITCH */
   .hero-title::before,
   .hero-title::after {
@@ -219,19 +219,19 @@
     font-family: 'UnifrakturMaguntia', serif;
     font-size: inherit;
   }
-
+ 
   .hero-title::before {
     color: var(--cyan);
     animation: rgbSplitLeft 4s infinite;
     clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
   }
-
+ 
   .hero-title::after {
     color: var(--red);
     animation: rgbSplitRight 4s infinite;
     clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
   }
-
+ 
   @keyframes rgbSplitLeft {
     0%, 88%, 100% { transform: translate(0,0); opacity: 0; }
     90% { transform: translate(-4px, 1px); opacity: 0.8; }
@@ -239,7 +239,7 @@
     94% { transform: translate(-2px, 0); opacity: 0.7; }
     96% { opacity: 0; }
   }
-
+ 
   @keyframes rgbSplitRight {
     0%, 88%, 100% { transform: translate(0,0); opacity: 0; }
     90% { transform: translate(4px, -1px); opacity: 0.8; }
@@ -247,7 +247,7 @@
     94% { transform: translate(2px, 0); opacity: 0.7; }
     96% { opacity: 0; }
   }
-
+ 
   .hero-sub {
     margin-top: 24px;
     font-size: clamp(0.6rem, 1.5vw, 0.75rem);
@@ -256,11 +256,11 @@
     color: rgba(255,255,255,0.35);
     animation: fadeIn 1s ease 0.8s both;
   }
-
+ 
   .hero-sub span {
     color: var(--red);
   }
-
+ 
   .scroll-hint {
     position: absolute;
     bottom: 32px;
@@ -272,12 +272,12 @@
     text-transform: uppercase;
     animation: pulse 2s ease infinite;
   }
-
+ 
   @keyframes pulse {
     0%, 100% { opacity: 0.2; }
     50% { opacity: 0.6; }
   }
-
+ 
   /* ─── ABOUT ─── */
   #about {
     display: flex;
@@ -286,11 +286,11 @@
     gap: 80px;
     border-top: 1px solid rgba(255,255,255,0.05);
   }
-
+ 
   .about-left {
     flex: 1;
   }
-
+ 
   .section-tag {
     font-size: 0.58rem;
     letter-spacing: 0.4em;
@@ -299,7 +299,7 @@
     margin-bottom: 20px;
     display: block;
   }
-
+ 
   .section-title {
     font-family: 'UnifrakturMaguntia', serif;
     font-size: clamp(2.5rem, 5vw, 4.5rem);
@@ -307,26 +307,26 @@
     color: var(--white);
     margin-bottom: 32px;
   }
-
+ 
   .about-text {
     font-size: 0.8rem;
     line-height: 1.9;
     color: rgba(255,255,255,0.45);
     max-width: 480px;
   }
-
+ 
   .about-text strong {
     color: var(--white);
     font-weight: normal;
   }
-
+ 
   .skills-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 12px;
     margin-top: 40px;
   }
-
+ 
   .skill-item {
     padding: 12px 16px;
     border: 1px solid rgba(255,255,255,0.07);
@@ -338,7 +338,7 @@
     transition: all 0.3s;
     overflow: hidden;
   }
-
+ 
   .skill-item::before {
     content: '';
     position: absolute;
@@ -347,26 +347,26 @@
     background: var(--red);
     transition: height 0.3s;
   }
-
+ 
   .skill-item:hover {
     color: var(--white);
     border-color: rgba(255,0,34,0.3);
     background: rgba(255,0,34,0.04);
   }
-
+ 
   .skill-item:hover::before { height: 100%; }
-
+ 
   .about-right {
     flex: 0 0 340px;
     position: relative;
   }
-
+ 
   .about-card {
     border: 1px solid rgba(255,255,255,0.07);
     padding: 32px;
     position: relative;
   }
-
+ 
   .about-card::before {
     content: '';
     position: absolute;
@@ -374,7 +374,7 @@
     width: 60px; height: 1px;
     background: var(--red);
   }
-
+ 
   .stat-row {
     display: flex;
     justify-content: space-between;
@@ -383,38 +383,38 @@
     font-size: 0.65rem;
     letter-spacing: 0.1em;
   }
-
+ 
   .stat-row:last-child { border-bottom: none; }
-
+ 
   .stat-label { color: rgba(255,255,255,0.3); }
   .stat-val { color: var(--white); }
   .stat-val.accent { color: var(--cyan); }
-
+ 
   /* ─── WORK ─── */
   #work {
     padding: 120px 10%;
     border-top: 1px solid rgba(255,255,255,0.05);
   }
-
+ 
   .work-header {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
     margin-bottom: 64px;
   }
-
+ 
   .work-count {
     font-size: 0.6rem;
     letter-spacing: 0.3em;
     color: rgba(255,255,255,0.2);
   }
-
+ 
   .projects-grid {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     gap: 2px;
   }
-
+ 
   .project-card {
     position: relative;
     overflow: hidden;
@@ -422,14 +422,14 @@
     cursor: pointer;
     group: true;
   }
-
+ 
   .project-card:nth-child(1) { grid-column: span 7; grid-row: span 2; }
   .project-card:nth-child(2) { grid-column: span 5; }
   .project-card:nth-child(3) { grid-column: span 5; }
   .project-card:nth-child(4) { grid-column: span 4; }
   .project-card:nth-child(5) { grid-column: span 4; }
   .project-card:nth-child(6) { grid-column: span 4; }
-
+ 
   .project-thumb {
     width: 100%;
     height: 100%;
@@ -438,16 +438,9 @@
     position: relative;
     overflow: hidden;
   }
-
-  .project-thumb a.yt-link {
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  z-index: 20;
-  display: block;
-}
-
+ 
   .project-card:nth-child(1) .project-thumb { min-height: 440px; }
-
+ 
   /* Placeholder gradients */
   .project-card:nth-child(1) .project-thumb { background: linear-gradient(135deg, #1a0a20 0%, #0a1a2a 100%); }
   .project-card:nth-child(2) .project-thumb { background: linear-gradient(135deg, #1a0808 0%, #0a0a1a 100%); }
@@ -455,7 +448,7 @@
   .project-card:nth-child(4) .project-thumb { background: linear-gradient(135deg, #1a1508 0%, #081a18 100%); }
   .project-card:nth-child(5) .project-thumb { background: linear-gradient(135deg, #0a0a1a 0%, #1a080a 100%); }
   .project-card:nth-child(6) .project-thumb { background: linear-gradient(135deg, #0a1a0a 0%, #1a0a18 100%); }
-
+ 
   /* Visual content inside cards */
   .project-thumb::before {
     content: '';
@@ -466,7 +459,7 @@
     border: 1px solid rgba(255,255,255,0.04);
     transition: all 0.4s;
   }
-
+ 
   .project-thumb::after {
     content: attr(data-icon);
     position: absolute;
@@ -478,7 +471,7 @@
     letter-spacing: 0.1em;
     color: var(--white);
   }
-
+ 
   .project-info {
     position: absolute;
     bottom: 0; left: 0; right: 0;
@@ -486,7 +479,7 @@
     background: linear-gradient(transparent, rgba(0,0,0,0.9));
     transform: translateY(0);
   }
-
+ 
   .project-type {
     font-size: 0.52rem;
     letter-spacing: 0.3em;
@@ -494,16 +487,49 @@
     color: var(--red);
     margin-bottom: 6px;
   }
-
+ 
   .project-name {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 1.3rem;
     letter-spacing: 0.08em;
     color: var(--white);
   }
-
+ 
   .project-card:nth-child(1) .project-name { font-size: 2rem; }
-
+ 
+  /* Lien YouTube sur toute la carte */
+  .project-thumb a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0; left: 0;
+    z-index: 2;
+  }
+ 
+  .project-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+ 
+  /* Lien cliquable pleine carte */
+  .project-thumb a.yt-link {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: 20;
+    display: block;
+  }
+ 
+  .project-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    min-height: inherit;
+  }
+ 
   .project-hover {
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
@@ -514,8 +540,10 @@
     justify-content: center;
     opacity: 0;
     transition: all 0.3s;
+    pointer-events: none; /* laisse passer les clics au lien en dessous */
+    z-index: 15;
   }
-
+ 
   .project-hover span {
     font-size: 0.6rem;
     letter-spacing: 0.4em;
@@ -524,22 +552,22 @@
     border: 1px solid rgba(255,255,255,0.3);
     padding: 10px 20px;
   }
-
+ 
   .project-card:hover .project-hover {
     opacity: 1;
     border-color: rgba(255,0,34,0.3);
   }
-
+ 
   .project-card:hover .project-thumb::before {
     width: 80%; height: 80%;
     border-color: rgba(255,0,34,0.1);
   }
-
+ 
   /* Glitch on card hover */
   .project-card:hover .project-name {
     animation: textGlitch 0.3s steps(2) 1;
   }
-
+ 
   @keyframes textGlitch {
     0% { text-shadow: none; }
     25% { text-shadow: -2px 0 var(--cyan), 2px 0 var(--red); }
@@ -547,7 +575,7 @@
     75% { text-shadow: -1px 0 var(--violet); }
     100% { text-shadow: none; }
   }
-
+ 
   /* ─── REEL ─── */
   #reel {
     padding: 120px 10%;
@@ -557,7 +585,7 @@
     align-items: center;
     text-align: center;
   }
-
+ 
   .reel-container {
     width: 100%;
     max-width: 900px;
@@ -569,7 +597,7 @@
     overflow: hidden;
     cursor: pointer;
   }
-
+ 
   .reel-container::before {
     content: '';
     position: absolute;
@@ -577,7 +605,7 @@
     height: 3px;
     background: linear-gradient(90deg, var(--red), var(--cyan), var(--violet));
   }
-
+ 
   .reel-play {
     position: absolute;
     top: 50%; left: 50%;
@@ -590,20 +618,20 @@
     justify-content: center;
     transition: all 0.3s;
   }
-
+ 
   .reel-play::after {
     content: '▶';
     font-size: 1.5rem;
     color: var(--white);
     margin-left: 4px;
   }
-
+ 
   .reel-container:hover .reel-play {
     border-color: var(--red);
     background: rgba(255,0,34,0.1);
     transform: translate(-50%, -50%) scale(1.1);
   }
-
+ 
   .reel-label {
     position: absolute;
     bottom: 20px; left: 20px;
@@ -612,7 +640,7 @@
     text-transform: uppercase;
     color: rgba(255,255,255,0.2);
   }
-
+ 
   .reel-scanlines {
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
@@ -622,13 +650,13 @@
     );
     pointer-events: none;
   }
-
+ 
   /* ─── PROCESS ─── */
   #process {
     padding: 120px 10%;
     border-top: 1px solid rgba(255,255,255,0.05);
   }
-
+ 
   .process-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -636,7 +664,7 @@
     margin-top: 64px;
     background: rgba(255,255,255,0.05);
   }
-
+ 
   .process-step {
     background: var(--black);
     padding: 40px 28px;
@@ -644,7 +672,7 @@
     overflow: hidden;
     transition: background 0.3s;
   }
-
+ 
   .process-step::before {
     content: '';
     position: absolute;
@@ -653,15 +681,15 @@
     background: transparent;
     transition: background 0.3s;
   }
-
+ 
   .process-step:hover {
     background: rgba(255,0,34,0.03);
   }
-
+ 
   .process-step:hover::before {
     background: var(--red);
   }
-
+ 
   .step-num {
     font-size: 0.55rem;
     letter-spacing: 0.3em;
@@ -669,7 +697,7 @@
     margin-bottom: 24px;
     display: block;
   }
-
+ 
   .step-title {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 1.6rem;
@@ -677,13 +705,13 @@
     color: var(--white);
     margin-bottom: 16px;
   }
-
+ 
   .step-desc {
     font-size: 0.68rem;
     line-height: 1.8;
     color: rgba(255,255,255,0.3);
   }
-
+ 
   /* ─── CONTACT ─── */
   #contact {
     padding: 120px 10% 80px;
@@ -693,25 +721,25 @@
     gap: 80px;
     align-items: start;
   }
-
+ 
   .contact-left .section-title {
     font-size: clamp(2rem, 5vw, 4rem);
     margin-bottom: 20px;
   }
-
+ 
   .contact-desc {
     font-size: 0.72rem;
     line-height: 1.9;
     color: rgba(255,255,255,0.35);
     margin-bottom: 40px;
   }
-
+ 
   .contact-links {
     display: flex;
     flex-direction: column;
     gap: 12px;
   }
-
+ 
   .contact-link {
     display: flex;
     align-items: center;
@@ -726,7 +754,7 @@
     transition: all 0.3s;
     position: relative;
   }
-
+ 
   .contact-link::before {
     content: '→';
     position: absolute;
@@ -735,30 +763,30 @@
     transition: all 0.3s;
     color: var(--red);
   }
-
+ 
   .contact-link:hover {
     color: var(--white);
     padding-left: 8px;
   }
-
+ 
   .contact-link:hover::before {
     opacity: 1;
     right: 4px;
   }
-
+ 
   .link-icon {
     font-size: 0.9rem;
     opacity: 0.5;
   }
-
+ 
   .contact-right {
     padding-top: 8px;
   }
-
+ 
   .form-field {
     margin-bottom: 20px;
   }
-
+ 
   .form-label {
     display: block;
     font-size: 0.55rem;
@@ -767,7 +795,7 @@
     color: rgba(255,255,255,0.25);
     margin-bottom: 8px;
   }
-
+ 
   .form-input,
   .form-textarea {
     width: 100%;
@@ -781,17 +809,17 @@
     outline: none;
     transition: border-color 0.3s;
   }
-
+ 
   .form-input:focus,
   .form-textarea:focus {
     border-color: var(--red);
   }
-
+ 
   .form-textarea {
     height: 100px;
     resize: none;
   }
-
+ 
   .form-btn {
     margin-top: 32px;
     width: 100%;
@@ -808,7 +836,7 @@
     position: relative;
     overflow: hidden;
   }
-
+ 
   .form-btn::before {
     content: '';
     position: absolute;
@@ -818,14 +846,14 @@
     transition: left 0.4s ease;
     z-index: -1;
   }
-
+ 
   .form-btn:hover {
     border-color: var(--red);
     color: var(--white);
   }
-
+ 
   .form-btn:hover::before { left: 0; }
-
+ 
   /* ─── FOOTER ─── */
   footer {
     padding: 20px 10%;
@@ -834,13 +862,13 @@
     justify-content: space-between;
     align-items: center;
   }
-
+ 
   .footer-copy {
     font-size: 0.55rem;
     letter-spacing: 0.2em;
     color: rgba(255,255,255,0.15);
   }
-
+ 
   .footer-status {
     display: flex;
     align-items: center;
@@ -849,19 +877,19 @@
     letter-spacing: 0.2em;
     color: rgba(255,255,255,0.2);
   }
-
+ 
   .status-dot {
     width: 6px; height: 6px;
     border-radius: 50%;
     background: #00ff88;
     animation: blink 2s ease infinite;
   }
-
+ 
   @keyframes blink {
     0%, 100% { opacity: 1; }
     50% { opacity: 0.2; }
   }
-
+ 
   /* ─── RANDOM GLITCH LINES ─── */
   .glitch-line {
     position: fixed;
@@ -873,19 +901,19 @@
     opacity: 0;
     height: 1px;
   }
-
+ 
   /* ─── SCROLL ANIMATIONS ─── */
   .reveal {
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.7s ease, transform 0.7s ease;
   }
-
+ 
   .reveal.visible {
     opacity: 1;
     transform: translateY(0);
   }
-
+ 
   /* ─── TV STATIC GLITCH ─── */
   @keyframes tvStatic {
     0%, 97%, 100% { transform: translateX(0); }
@@ -895,11 +923,11 @@
     99% { transform: translateX(3px); }
     99.5% { transform: translateX(0); }
   }
-
+ 
   #home, nav {
     animation: tvStatic 8s infinite;
   }
-
+ 
   /* ─── MOBILE ─── */
   @media (max-width: 768px) {
     nav { padding: 14px 20px; }
@@ -917,15 +945,15 @@
 </style>
 </head>
 <body>
-
+ 
 <!-- GLITCH BARS -->
 <div class="glitch-bar"></div>
 <div class="glitch-line" id="gline1"></div>
 <div class="glitch-line" id="gline2"></div>
-
+ 
 <!-- GRID OVERLAY -->
 <div id="grid-overlay"></div>
-
+ 
 <!-- NAV -->
 <nav>
   <a href="#home" class="nav-logo">Julien</a>
@@ -937,30 +965,30 @@
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
-
+ 
 <!-- ─── HOME ─── -->
 <section id="home">
   <span class="home-label">Monteur Vidéo &nbsp;/&nbsp; Motion Designer</span>
   <h1 class="hero-title" data-text="Portfolio">Portfolio</h1>
-  <p class="hero-sub">Julien &nbsp;<span>//</span>&nbsp; Haut De France &nbsp;<span>//</span>&nbsp; BTS Audiovisuel 2026</p>
+  <p class="hero-sub">Julien &nbsp;<span>//</span>&nbsp; Amiens, France &nbsp;<span>//</span>&nbsp; BTS Audiovisuel 2025</p>
   <div class="scroll-hint">Scroll pour explorer</div>
 </section>
-
+ 
 <!-- ─── ABOUT ─── -->
 <section id="about">
   <div class="about-left reveal">
     <span class="section-tag">// 01 — Profil</span>
     <h2 class="section-title">Qui<br>suis-je ?</h2>
     <p class="about-text">
-      Salut, moi c'est Julien. Passionné par l'audiovisuel depuis mes débuts en <strong>autodidacte</strong>, j'adore donner vie à des histoires et façonner des univers visuels captivants. Curieux et constamment à la recherche de nouvelles manières de créer, je combine le rythme du montage, l'impact du motion design et l'immersion de la 3D. J'intègre le <strong>BTS Audiovisuel — option Montage</strong> en septembre 2026 avec l'envie d'aller encore plus loin.<br><br>
-      Pour moi, chaque projet est une opportunité d'expérimenter et de peaufiner les détails pour rendre le rendu final mémorable.
+      Monteur vidéo et motion designer <strong>autodidacte</strong>, je construis des récits visuels qui frappent fort. Passionné par la <strong>narration visuelle</strong>, les effets cinématiques et la 3D, j'entre en <strong>BTS Audiovisuel — option Montage</strong> en septembre 2025.<br><br>
+      De la découpe à l'export final, chaque projet est une obsession.
     </p>
     <div class="skills-grid">
       <div class="skill-item">Premiere Pro</div>
-      <div class="skill-item">After Effects — en apprentissage</div>
-      <div class="skill-item">Blender 3D — en apprentissage</div>
+      <div class="skill-item">After Effects</div>
+      <div class="skill-item">Blender 3D</div>
       <div class="skill-item">Photoshop</div>
-      <div class="skill-item">Motion Design — en apprentissage</div>
+      <div class="skill-item">Motion Design</div>
       <div class="skill-item">Color Grading</div>
       <div class="skill-item">Sound Design</div>
       <div class="skill-item">Storytelling</div>
@@ -982,7 +1010,7 @@
       </div>
       <div class="stat-row">
         <span class="stat-label">Localisation</span>
-        <span class="stat-val">Haut De France</span>
+        <span class="stat-val">Amiens, France</span>
       </div>
       <div class="stat-row">
         <span class="stat-label">Freelance</span>
@@ -995,7 +1023,7 @@
     </div>
   </div>
 </section>
-
+ 
 <!-- ─── WORK ─── -->
 <section id="work">
   <div class="work-header reveal">
@@ -1048,13 +1076,13 @@
         <div class="project-name">Vidéo Montage</div>
       </div>
     </div>
-
-  <div class="project-card">
-    <div class="project-thumb">
-      <img src="https://img.youtube.com/vi/oVgMvcHJcoU/maxresdefault.jpg" alt="Effets Spéciaux">
+ 
+    <div class="project-card">
+      <div class="project-thumb">
+        <img src="https://img.youtube.com/vi/oVgMvcHJcoU/maxresdefault.jpg" alt="Effets Spéciaux">
         <a class="yt-link" href="https://www.youtube.com/watch?v=oVgMvcHJcoU" target="_blank" rel="noopener"></a>
-          <div class="project-hover"><span>▶ Voir sur YouTube</span></div>
-          </div>
+        <div class="project-hover"><span>▶ Voir sur YouTube</span></div>
+      </div>
       <div class="project-info">
         <div class="project-type">VFX</div>
         <div class="project-name">Effets Spéciaux</div>
@@ -1085,7 +1113,7 @@
     <div class="reel-label">▶ PLAY — MONTAGE 2025 — 02:34</div>
   </div>
 </section>
-
+ 
 <!-- ─── PROCESS ─── -->
 <section id="process">
   <div class="reveal">
@@ -1115,7 +1143,7 @@
     </div>
   </div>
 </section>
-
+ 
 <!-- ─── CONTACT ─── -->
 <section id="contact">
   <div class="contact-left reveal">
@@ -1123,14 +1151,17 @@
     <h2 class="section-title">Travaillons<br>ensemble</h2>
     <p class="contact-desc">Tu as un projet vidéo, un montage à réaliser, un motion design à créer ? Écris-moi.</p>
     <div class="contact-links">
-      <a href="mailto:ducrocqjulien5@gmail.com" class="contact-link">
-        <span class="link-icon">✉</span> ducrocqjulien5@gmail.com
+      <a href="mailto:contact@julien.fr" class="contact-link">
+        <span class="link-icon">✉</span> contact@julien.fr
       </a>
       <a href="#" class="contact-link">
-        <span class="link-icon">▶</span> YouTube — @-mok4-
+        <span class="link-icon">▶</span> YouTube — @julien
       </a>
       <a href="#" class="contact-link">
-        <span class="link-icon">◈</span> Instagram — @juli1_exe
+        <span class="link-icon">◈</span> Instagram — @julien
+      </a>
+      <a href="#" class="contact-link">
+        <span class="link-icon">⬡</span> LinkedIn
       </a>
     </div>
   </div>
@@ -1150,16 +1181,16 @@
     <button class="form-btn">Envoyer le message</button>
   </div>
 </section>
-
+ 
 <!-- ─── FOOTER ─── -->
 <footer>
-  <span class="footer-copy">© 2026 Julien — Monteur Vidéo & Motion Designer</span>
+  <span class="footer-copy">© 2025 Julien — Monteur Vidéo & Motion Designer</span>
   <div class="footer-status">
     <div class="status-dot"></div>
     Disponible pour missions freelance
   </div>
 </footer>
-
+ 
 <script>
   // ─── GRID INTERACTIVE ───
   const overlay = document.getElementById('grid-overlay');
@@ -1183,13 +1214,13 @@
       }
     }
   }
-
+ 
   buildGrid();
   window.addEventListener('resize', buildGrid);
-
+ 
   let lastCell = null;
   let hovered = new Set();
-
+ 
   document.addEventListener('mousemove', (e) => {
     const col = Math.floor(e.clientX / cellSize);
     const row = Math.floor((e.clientY + window.scrollY) / cellSize);
@@ -1213,7 +1244,7 @@
       });
     }
   });
-
+ 
   // ─── RANDOM GLITCH LINES ───
   function spawnGlitchLine() {
     const line = document.getElementById('gline1');
@@ -1227,9 +1258,9 @@
     
     setTimeout(() => { pick.style.opacity = '0'; }, 80 + Math.random() * 200);
   }
-
+ 
   setInterval(spawnGlitchLine, 2000 + Math.random() * 3000);
-
+ 
   // ─── SCROLL REVEAL ───
   const reveals = document.querySelectorAll('.reveal');
   const obs = new IntersectionObserver((entries) => {
@@ -1239,9 +1270,9 @@
       }
     });
   }, { threshold: 0.1 });
-
+ 
   reveals.forEach(el => obs.observe(el));
-
+ 
   // ─── RANDOM TV GLITCH SHAKE ───
   function tvGlitch() {
     const intensity = Math.random();
@@ -1255,9 +1286,9 @@
       }, 50);
     }
   }
-
+ 
   setInterval(tvGlitch, 3000 + Math.random() * 5000);
-
+ 
   // ─── CURSOR TRAIL ───
   const trail = [];
   for (let i = 0; i < 5; i++) {
@@ -1275,9 +1306,9 @@
     document.body.appendChild(dot);
     trail.push({ el: dot, x: 0, y: 0 });
   }
-
+ 
   let mouseX = 0, mouseY = 0;
-
+ 
   document.addEventListener('mousemove', (e) => {
     mouseX = e.clientX;
     mouseY = e.clientY;
@@ -1287,7 +1318,7 @@
     trail[0].el.style.top = mouseY + 'px';
     trail[0].el.style.opacity = '0.8';
   });
-
+ 
   // ─── ACTIVE NAV ───
   const sections = document.querySelectorAll('section[id]');
   const navLinks = document.querySelectorAll('.nav-links a');
@@ -1302,7 +1333,7 @@
         ? 'rgba(255,255,255,0.9)' : '';
     });
   });
-
+ 
   // ─── TYPING EFFECT on footer ───
   const statusTxt = document.querySelector('.footer-copy');
   const originalTxt = statusTxt.textContent;
@@ -1320,7 +1351,7 @@
       iterations += 2;
     }, 30);
   }
-
+ 
   // Glitch text on scroll into view
   const footerObs = new IntersectionObserver((entries) => {
     if (entries[0].isIntersecting) {
